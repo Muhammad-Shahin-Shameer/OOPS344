@@ -1,53 +1,57 @@
-#ifndef DICTINARY_H
-#define DICTINARY_H
+#ifndef SENECA_DICTIONARY_H
+#define SENECA_DICTIONARY_H
 
 #include <iostream>
 #include <fstream>
+#include <cstring>
 #include <string>
-#include <vector>
 #include "settings.h"
+#include "dictionary.h"
 
+
+namespace seneca {
 
 enum class PartOfSpeech
 {
-  Unknown,
-  Noun,
-  Pronoun,
-  Adjective,
-  Adverb,
-  Verb,
-  Preposition,
-  Conjunction,
-  Interjection,
+    Unknown,
+    Noun,
+    Pronoun,
+    Adjective,
+    Adverb,
+    Verb,
+    Preposition,
+    Conjunction,
+    Interjection,
 };
+
 struct Word
 {
-  std::string m_word{};
-  std::string m_definition{};
-  PartOfSpeech m_pos = PartOfSpeech::Unknown;
+    std::string m_word{};
+    std::string m_definition{};
+    PartOfSpeech m_pos = PartOfSpeech::Unknown;
 };
 
+class Dictionary
+{
 
-class Dictionary{
+    struct Word *m_words; 
+    size_t m_size;
 
-private:
-    std::vector<Word> m_words;  // Vector to store words dynamically
-    void loadFromFile(const char* filename);  // Helper function to load words from file
+    // Helper function to load words from a file
+    void loadFromFile(const char* filename);
 
 public:
-    // Default constructor
-    Dictionary();
-    // Constructor that loads words from a file
-    Dictionary(const char* filename);
-    // Search for a word in the dictionary
-    void searchWord(const char* word);
-    // Helper function to convert a string to PartOfSpeech enum
-    PartOfSpeech parsePartOfSpeech(const std::string& pos);
+    Dictionary();                   // Default constructor
+    Dictionary(const char* filename); // Constructor that loads from a file
+    ~Dictionary();                  // Destructor (if needed for cleanup)
 
+    void searchWord(const char* word);  // Search for a word in the dictionary
 
+    
+
+    
 };
-
-
-
-
-#endif
+ std::string posToString(PartOfSpeech pos);
+ std::string getSpeech(PartOfSpeech pos);
+}
+#endif // DICTIONARY_H

@@ -1,15 +1,14 @@
-#ifndef LOGGER_H
-#define LOGGER_H
+#ifndef SENECA_LOGGER_H
+#define SENECA_LOGGER_H
 
 #include <iostream>
-#include <memory>
-#include <vector>
-#include "Event.h"
 
-class Logger{
+#include "event.h"
+namespace seneca {
+  class Logger {
 
-    private:
-    
+  private:
+
     Event* m_events;  // This is a pointer to a dynamically allocated array of Event objects.
     size_t m_size;    // This variable keeps track of the current number of events stored in the array.
     size_t m_capacity; // Maximum number of events the array can hold
@@ -17,7 +16,7 @@ class Logger{
     //  resize the array if necessary after checking the Max capacity
     void resizeArray(size_t newCapacity);
 
-    public:
+  public:
     // Default constructor
     Logger();
 
@@ -33,7 +32,7 @@ class Logger{
     When using the assignment operator (=) to assign an object, it first checks if the temporary
      object is valid. If valid, it assigns the value; otherwise, it handles the invalid case accordingly
     */
-   Logger& operator=(Logger&& other) noexcept;
+    Logger& operator=(Logger&& other) noexcept;
 
     // Disable copy constructor and copy assignment operator
     /*it's generally considered good practice to delete the copy constructor
@@ -46,8 +45,9 @@ class Logger{
     // Method to add an event to the logger
     void addEvent(const Event& event);
 
-     // Friend function to print all events using operator<<
-    friend std::ostream& operator <<(std::ostream& os ,const Logger& logger);
-};
+    // Friend function to print all events using operator<<
+    friend std::ostream& operator <<(std::ostream& os, const Logger& logger);
+  };
+}
 
 #endif

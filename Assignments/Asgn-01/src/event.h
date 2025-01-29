@@ -1,12 +1,12 @@
-#ifndef EVENT_H
-#define EVENT_H
+#ifndef SENECA_EVENT_H
+#define SENECA_EVENT_H
 #include <iostream>
 #include <string>
 #include <chrono>
 #include <iomanip>
 #include "settings.h"
 
-
+namespace seneca {
 
 class Event{
 
@@ -25,5 +25,5 @@ class Event{
     friend std::ostream& operator<<(std::ostream& os, const Event& event);
 
 };
-
+}
 #endif

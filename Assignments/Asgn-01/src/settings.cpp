@@ -1,4 +1,6 @@
 #include "settings.h"
 
+namespace seneca {
+  Settings g_settings;
 
-Settings g_settings;
+}
