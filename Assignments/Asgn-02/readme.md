@@ -169,14 +169,14 @@ Template parameters:
 #### Public Members
 
 - `Barbarian(const char* name, int healthMax, int baseAttack, int baseDefense, Weapon_t primaryWeapon, Weapon_t secondaryWeapon)`: initializes a new object to the values received as parameters.
-- `int getAttackAmnt() const`: returns the damage that character can do in an attack, using the formula:
+- `int getAttackAmnt() const override`: returns the damage that character can do in an attack, using the formula:
 
   ```math
   BASE\_ATTACK + \frac{WEAPON_1\_DAMAGE}{2} + \frac{WEAPON_2\_DAMAGE}{2}
   ```
 
   In this design, it is assumed that `Weapon_t` template type supports conversion to `double` operator that will return the damage the weapon can do; this operator can be used with `static_cast`.
-- `int getAttackAmnt() const override`: return the base defense value.
+- `int getDefenseAmnt() const override`: return the base defense value.
 - `Character* clone() const override`: dynamically creates a copy of the current instance and returns its address to the client.
 - `void attack(Character* enemy) override`: attacks the enemy received as parameter and inflicts damage to it.
   - print:
